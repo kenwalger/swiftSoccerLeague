@@ -144,9 +144,9 @@ var players = [joeSmith, jillTanner, billBon, evaGordon, mattGill, kimmyStein,
 // Team Dictionary
 
 var teams = [
-    ["name": "Raptors", "practiceDay": "March 18, 1:00 pm"],
-    ["name": "Sharks", "practiceDay": "March 17, 3:00 pm"],
-    ["name": "Dragons", "practiceDay": "March 17, 1:00 pm"]
+    ["name": "Raptors", "practiceTime": "March 18, 1:00 pm"],
+    ["name": "Sharks", "practiceTime": "March 17, 3:00 pm"],
+    ["name": "Dragons", "practiceTime": "March 17, 1:00 pm"]
 ]
 
 // Team assignment
@@ -192,7 +192,7 @@ func assignPlayers(playerGroup: [[Any]]) {
 
 func printLetters() {
     for player in players {
-        print("Hello \(player["guardian"]!): \n\(player["name"]!) has been chosen to play on the \(teams[player["team"] as! Int]["name"]!) team. \nThe first practice will be at YYY. \n\n")
+        print("Hello \(player["guardian"]!): \n\(player["name"]!) has been chosen to play on the \(teams[player["team"] as! Int]["name"]!) team. \nThe first practice will be at \(teams[player["team"] as! Int]["practiceTime"]!). \n\n")
     }
 }
 
