@@ -192,7 +192,9 @@ func assignPlayers(playerGroup: [[Any]]) {
 
 func printLetters() {
     for player in players {
-        print("Hello \(player["guardian"]!): \n\(player["name"]!) has been chosen to play on the \(teams[player["team"] as! Int]["name"]!) team. \nThe first practice will be at \(teams[player["team"] as! Int]["practiceTime"]!). \n\n")
+        print("Hello \(player["guardian"]!): \n\(player["name"]!) has been chosen " + "to play on the \(teams[player["team"] as! Int]["name"]!) team." +
+            " \nThe first practice will be at " +
+            "\(teams[player["team"] as! Int]["practiceTime"]!). \n\n")
     }
 }
 
