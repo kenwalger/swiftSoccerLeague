@@ -152,12 +152,23 @@ var teams = [
 // Team assignment
 var team: Int = 0
 
+
 // Handle even distribution of experienced vs. inexperienced
-func sortExperience() {
+func sortPlayers() {
     var seasonedPlayers: [[Any]] = []
     var rookiePlayers: [[Any]] = []
     
     var count = 0
+    
+    // EXTRA CREDIT: Height consideration calculation
+    // Sort players array by "height"
+    
+    players.sortInPlace{
+        spec1, spec2 in
+        let firstHeight = spec1["height"] as? Int
+        let secondHeight = spec2["height"] as? Int
+        return firstHeight > secondHeight
+    }
     
     for player in players {
         // sort by experience
@@ -169,11 +180,16 @@ func sortExperience() {
         count += 1
     }
     
-    assignPlayers(seasonedPlayers)
-    assignPlayers(rookiePlayers)
+    // Use sort for a typed array and closures
+    // Shorthand argument names $0[1] and $1[1] take the value of the inputed array item at index 1.
+    // For the case of our players information, the item at index 1 is the "height" value.
+    let seasonedSortedArray = seasonedPlayers.sort { ($0[1] as? Double) > ($1[1] as? Double) }
+    let rookieSortedArray = rookiePlayers.sort { ($0[1] as? Double) > ($1[1] as? Double) }
+    
+    // Process team assignments
+    assignPlayers(seasonedSortedArray)
+    assignPlayers(rookieSortedArray)
 }
-
-// EXTRA CREDIT: Height consideration calculation
 
 // Assign players to teams
 
@@ -192,12 +208,12 @@ func assignPlayers(playerGroup: [[Any]]) {
 
 func printLetters() {
     for player in players {
-        print("Hello \(player["guardian"]!): \n\(player["name"]!) has been assigned" +
+        print("Hello \(player["guardian"]!): \n\(player["name"]!) has been assigned " +
             "to the \(teams[player["team"] as! Int]["name"]!) team." +
             " \nThe first practice will be at " +
             "\(teams[player["team"] as! Int]["practiceTime"]!). \n\n")
     }
 }
 
-sortExperience()
+sortPlayers()
 printLetters()
